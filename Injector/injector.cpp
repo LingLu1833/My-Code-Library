@@ -39,15 +39,15 @@ bool Injector::Inject()
 		return false;
 	}
 
-	FARPROC pLoadLibraryW = GetProcAddress(hKernel32, "LoadLibraryW");
-	if (pLoadLibraryW == NULL)
+	FARPROC pLoadLibrary = GetProcAddress(hKernel32, "LoadLibraryW");
+	if (pLoadLibrary == NULL)
 	{
 		VirtualFreeEx(hProcess, pRemoteMem, 0, MEM_RELEASE);
 		CloseHandle(hProcess);
 		return false;
 	}
 
-	HANDLE hThread = CreateRemoteThread(hProcess, NULL, 0, (LPTHREAD_START_ROUTINE)pLoadLibraryW, pRemoteMem, 0, NULL);
+	HANDLE hThread = CreateRemoteThread(hProcess, NULL, 0, (LPTHREAD_START_ROUTINE)pLoadLibrary, pRemoteMem, 0, NULL);
 	if (hThread == NULL)
 	{
 		VirtualFreeEx(hProcess, pRemoteMem, 0, MEM_RELEASE);
