@@ -1,14 +1,8 @@
 #include "injector.h"
 
-Injector::Injector(DWORD pid, LPCWSTR dllPath)
-{
-	m_pid = pid;
-	m_dllPath = dllPath;
-}
+Injector::Injector(DWORD pid, LPCWSTR dllPath) :m_pid(pid), m_dllPath(dllPath) {}
 
-Injector::~Injector()
-{
-}
+Injector::~Injector() {}
 
 bool Injector::Inject()
 {
