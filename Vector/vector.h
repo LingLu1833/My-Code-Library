@@ -5,6 +5,7 @@ using namespace std;
 
 class Vector
 {
+	friend ostream& operator<<(ostream& os, const Vector& v);
 public:
 	Vector();
 	Vector(double x, double y, double z);
@@ -16,8 +17,6 @@ public:
 
 	double length() const;
 	void normalize();
-
-	friend ostream& operator<<(ostream& os, const Vector& v);
 
 private:
 	double x, y, z;
